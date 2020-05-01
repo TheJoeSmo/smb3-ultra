@@ -44,12 +44,101 @@ tile_do_nothing:
 	RTS
 
 spc_at_blocks:
-	.word tile_do_toad_house_chest ; 81
-	.word tile_do_toad_house_chest ; 82
-	.word tile_do_toad_house_chest ; 83
-	.word tile_do_toad_house_chest ; 84
+	.word tile_do_49 				; 49
+	.word tile_do_4A 				; 4A
+	.word do_tile_81 				; 81
+	.word do_tile_82 				; 82
+	.word do_tile_83 				; 83
+	.word do_tile_84 				; 84
 
 
+quicksand_tileset_enabled:
+	.byte %00100000, %00000100, 0, 0, 0, 0, 0, 0
+
+tile_do_49:
+tile_do_4A:
+tile_do_quick_sand:
+	CPX #$00
+	BEQ ++ 							; we don't check if the player's head is in the quicksand
+
+; Check what tilesets use quicksand
+	LDA <quicksand_tileset_enabled
+	STA Temp_Var1
+	LDA >quicksand_tileset_enabled
+	STA Temp_Var1+1
+	LDA tile_check_tileset
+	BNE +
+++
+-
+	RTS
++
+    LDA player_y_vel
+    BMI -							; if moving upward do nothing
+
+; Do quick sand logic
+	TXA
+    LDA #$00						; disable ducking and sliding
+    STA is_ducking
+    STA is_sliding
+
+    LDA is_sinking
+    BNE +     						; if already sinking then we don't need to get the y position
+
+    LDA player_y        ; Get player_y at initial quicksand hit only...
++
+    AND #%11110000
+    STA is_sinking  				; player_y high bits
+
+; player_y - is_sinking
+    LDA player_y
+    SEC
+    SBC is_sinking
+
+    LDY #-$20    					; y = -$20 (escape jump vel)
+    TAX      						; difference -> x
+    AND #%11110000  				; Keep only upper 4 bits
+    BNE +  							; if not on top of sand jump
+
+    TXA      						; restore difference
+    AND #%00001111
+    CMP #$03
+    BGE +  							; not close enough so jump
+
+    LDY #-$30    					; almost out of quick sand speed)
+
++
+    LDA new_inputs
+    BMI +  							; if Player is pressing 'A', jump to +
+
+    INC is_sinking 					; we are sinking
+
+    LDY #$06     					; y = $06 (sinking vel)
+    BNE ++  						; jump
+
++
+; Player is trying to escape!  Play jump sound!
+    LDA player_sound_queue
+    ORA #SND_PLAYERJUMP
+    STA player_sound_queue
+
+++
+    STY player_y_vel ; Set Player's Y velocity
+
+; Limit Player's horizontal movement
+    LDA player_x_vel
+    ASL A
+    ROR player_x_vel
+    BPL +
+    INC player_x_vel
+
++
+    PLA
+    TAX
+    RTS
+
+do_tile_81:
+do_tile_82:
+do_tile_83:
 do_tile_84:
 	BNE do_tile_84_nothing ; if !head_block do nothing
 	LDA tileset
@@ -207,4 +296,5 @@ tile_do_toad_house_chest:
     STA map_sound_queue
 
     PLA 						; restore the block we stored
+    TAX
     RTS

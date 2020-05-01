@@ -633,25 +633,5 @@ PRG008_BEDA:
     BPL PRG008_BEE5
     INC Player_XVel
 PRG008_BEE5:
-
-    LDY tileset
-    CPY #$06
-    BNE PRG008_BF03  ; If level is not a Toad House, jump to PRG008_BF03 (RTS)
-
-    BIT new_inputs
-    BVC PRG008_BF03  ; If Player is not pressing 'B', jump to PRG008_BF03 (RTS)
-
-    JSR PChg_C000_To_29     ; Change page @ C000 to 29
-    JSR ToadHouse_ChestPressB   ; Attempt to open a chest!
-    JSR PChg_C000_To_0      ; Change page @ C000 to 0
-
-    TXA      ; X -> A
-    BEQ PRG008_BF03  ; If no treasure box opened, jump to PRG008_BF03 (RTS)
-
-    DEX      ; X-- (fix to proper inventory index)
-
-    LDA Level_BlockChgXLo
-    JSR ToadHouse_GiveItem  ; Pop out item!
-
 PRG008_BF03:
     RTS      ; Return

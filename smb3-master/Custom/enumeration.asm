@@ -11,6 +11,8 @@ is_kuribo = Player_Kuribo
 slippery_type = Player_Slippery
 white_block_cnt = Player_WhiteBlkCnt
 is_behind = Player_Behind
+is_sliding = Player_Slide
+is_sinking = Player_SandSink
 
 tileset = Level_TilesetIdx ; tilesets starting at Plains
 pipes_by_tileset = Temp_Var16
@@ -24,6 +26,7 @@ front_block = Level_Tile_InFL ; front block at feet level
 cur_player = Player_Current
 player_x = Player_X
 player_y = Player_Y
+player_x_vel = Player_XVel
 player_y_vel = Player_YVel
 player_slide = Player_SlideRate ; the amount added for 'sliding' (does not persist)
 
@@ -66,7 +69,7 @@ luigi_items = Inventory_Items2
 cur_random = RandomN
 
 ; sound engine
-
+player_sound_queue = Sound_QPlayer
 map_sound_queue = Sound_QMap
 
 ; common routines
