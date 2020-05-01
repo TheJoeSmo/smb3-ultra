@@ -1,0 +1,5 @@
+BonusLayout_Typical:    .include "PRG/levels/Bonus/Typical.asm"
+BonusLayout_NoTable:    .include "PRG/levels/Bonus/NoTable.asm"
+BonusLayout_BlueBox:    .include "PRG/levels/Bonus/BlueBox.asm"
+BonusLayout_Empty1: .include "PRG/levels/Bonus/Empty1.asm"
+BonusLayout_Empty2: .include "PRG/levels/Bonus/Empty2.asm"
