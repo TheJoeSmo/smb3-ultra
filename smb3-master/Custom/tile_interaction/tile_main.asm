@@ -41,22 +41,186 @@ tile_check_tileset:
 ; return a & b
 	AND Temp_Var1
 tile_do_nothing:
+    LDA active_inputs
+    AND #PAD_DOWN
+    BNE +
+    LDA #$00
+    STA white_block_cnt             ; reset white block counter if not on a white block
++
 	RTS
 
 spc_at_blocks:
+    .word tile_do_22
+    .word tile_do_23
+    .word tile_do_24
+    .word tile_do_25
+    .word tile_do_26
+    .word tile_do_27
+    
+    .word tile_do_36
+    .word tile_do_37
+    .word tile_do_38
+    .word tile_do_39
+    .word tile_do_3A
+
 	.word tile_do_49 				; 49
-	.word tile_do_4A 				; 4A
+	.word tile_do_4A
+    .word tile_do_4B
+    .word tile_do_4C
+
+    .word tile_do_55
+    .word tile_do_56
+
 	.word do_tile_81 				; 81
 	.word do_tile_82 				; 82
 	.word do_tile_83 				; 83
 	.word do_tile_84 				; 84
 
 
+; Quicksand and the icy tiles are used, so we check the head for quicksand and the rest for the tile
+tile_do_4A:
+    CPX #$00
+    BNE +
+    JMP tile_do_quick_sand
++
+    JMP tile_icy
+
+not_slippery:
+    LDA #$00
+    STA slippery_type  ; slippery_type = 0 (not slippery)
++
+    RTS
+
+tile_do_36:
+tile_do_37:
+tile_do_38:
+tile_do_39:
+tile_do_3A:
+tile_do_55:
+tile_do_56:
+tile_super_icy:
+    LDY #$02
+    BNE +
+
+tile_do_22:
+tile_do_23:
+tile_do_24:
+tile_do_4B:
+tile_do_4C:
+tile_icy:
+    LDY #$01
++
+    LDA tileset
+    CMP #11
+    BNE not_slippery
+    RTS
+
+    LDA in_air
+    BNE not_slippery
+    RTS
+
+    CPX #$01    ; only check for the tiles the player is above
+    BEQ +
+    CPX #$02
+    BEQ +
+    RTS
++
+
+    SEC
+    SBC #TILE12_SNOWBLOCK_UL
+    CMP #$03
+    BLT ++  ; If Player is on top of snow block, jump to ++
+
+    TYA      ; Restore tile -> 'A'
+    SEC
+    SBC #TILE12_GROUND_L
+    CMP #$03
+    BGE +++  ; If Player is not on bottom ground, jump to +++
+
+++
+    INC slippery_type  ; slippery_type = 1 (bottom ground is a little slippery!)
+    JMP +     ; Jump to +
+
++++:
+    TYA      ; Restore tile -> 'A'
+    SEC
+    SBC #TILE12_LARGEICEBLOCK_UL
+    CMP #$05
+    BLT PRG008_BE26  ; If Player is touching any of the small or large ice blocks, jump to PRG008_BE26
+
+    CPY #TILE12_FROZENCOIN
+    BEQ PRG008_BE26  ; If Player is touching frozen coin blocks, jump to PRG008_BE26
+
+    CPY #TILE12_FROZENMUNCHER
+    BNE PRG008_BE2E  ; If Player is NOT touching frozen muncher blocks, jump to PRG008_BE2E
+
+PRG008_BE26:
+    LDA #$02
+    STA slippery_type  ; slippery_type = 2 (ground is REALLY slippery!)
+
+    JMP +  ; Jump to +
+
+PRG008_BE2E:
+    DEX      ; X--
+    BPL -  ; While X >= 0, loop!
+
+
+
+
+
+tile_do_25:
+tile_do_26:
+tile_do_27:
+tile_do_white_tile:
+    LDA tileset
+    BEQ +       ; only check for white tiles in the plains tileset
+-
+    LDA #$00
+    STA white_block_cnt         ; reset white block counter if not on a white block
+    RTS
++
+    CPX #$01    ; only check for the tiles the player is above
+    BEQ +
+    CPX #$02
+    BEQ +
+    RTS
++
+; We are on a white block 
+    LDA active_inputs
+    AND #PAD_DOWN
+    BEQ -                           ; if !down then jump
+
+; We are holding down
+    INC white_block_cnt             ; white_block_cnt++
+    LDA white_block_cnt
+    CMP #$F0
+    BNE ++                          ; if white_block_cnt !$F0, jump to ++
+
+; Fall into background...
+
+    LDA #$F0                        ; can remove this, but this allows for changing of the value
+    STA is_behind                   ; set player as behind the scene
+
+    LDA #$00
+    STA player_y_vel                ; halt player vertically
+
+    LDA player_y
+    CLC
+    ADC #$06
+    STA player_y                    ; force player down by 6 pixels (fall)
+    INC in_air                      ; is in air
+
+; Don't register 'A' button
+    LDA new_inputs
+    AND #<~PAD_A
+    STA new_inputs
+++
+    RTS
+
 quicksand_tileset_enabled:
 	.byte %00100000, %00000100, 0, 0, 0, 0, 0, 0
 
 tile_do_49:
-tile_do_4A:
 tile_do_quick_sand:
 	CPX #$00
 	BEQ ++ 							; we don't check if the player's head is in the quicksand
@@ -66,7 +230,7 @@ tile_do_quick_sand:
 	STA Temp_Var1
 	LDA >quicksand_tileset_enabled
 	STA Temp_Var1+1
-	LDA tile_check_tileset
+	JSR tile_check_tileset
 	BNE +
 ++
 -
