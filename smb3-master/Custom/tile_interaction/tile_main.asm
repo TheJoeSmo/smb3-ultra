@@ -50,6 +50,9 @@ tile_do_nothing:
 	RTS
 
 spc_at_blocks:
+    .word tile_do_0C
+    .word tile_do_0D
+
     .word tile_do_22
     .word tile_do_23
     .word tile_do_24
@@ -57,6 +60,9 @@ spc_at_blocks:
     .word tile_do_26
     .word tile_do_27
     
+    .word tile_do_34
+    .word tile_do_35
+
     .word tile_do_36
     .word tile_do_37
     .word tile_do_38
@@ -71,10 +77,134 @@ spc_at_blocks:
     .word tile_do_55
     .word tile_do_56
 
+    .word tile_do_66
+
+    .word tile_do_7D
+    .word tile_do_7E
+
 	.word do_tile_81 				; 81
 	.word do_tile_82 				; 82
 	.word do_tile_83 				; 83
 	.word do_tile_84 				; 84
+
+    .word tile_do_9A
+    .word tile_do_9A
+
+    .word tile_do_C0
+    .word tile_do_C2
+
+    .word tile_do_E2
+    .word tile_do_E3
+
+    .word tile_do_F4
+
+conveyor_tileset_enabled:
+    .byte %01011000, 0, 0, 0, 0, 0, 0, 0
+
+tile_do_34:
+left_conveyor:
+    LDY #-16
+    BNE tile_do_conveyor
+
+tile_do_35:
+tile_do_right_conveyor:
+    LDY #16
+
+tile_do_conveyor:
+    CPX #$00    ; only check the feet
+    BNE +
+    CPX #$03
+    BNE +
+
+    LDA in_air
+    BNE +       ; if in air then jump (no conveyor)
+    LDA pswitch_cnt
+    BNE +       ; if in air then jump (no conveyor)
+
+; Check what tilesets use conveyors
+    LDA <conveyor_tileset_enabled
+    STA Temp_Var1
+    LDA >conveyor_tileset_enabled
+    STA Temp_Var1+1
+    JSR tile_check_tileset
+    BEQ +
+    RTS
++
+
+; Do conveyor action (we are on a conveyor)
+    TYA         ; get the conveyor slide
+    STA player_slide
+    RTS
+
+tile_do_7D:
+tile_do_7E:
+tile_do_spikes_tileset_nine:
+    LDA tileset
+    CMP #$08
+    BNE tile_do_spikes_main
+
+tile_do_0C:
+tile_do_0D:
+tile_do_spikes_tileset_eight:
+    LDA tileset
+    CMP #$07
+    BNE tile_do_spikes_main
+
+tile_do_E2:
+tile_do_E3:
+tile_do_spikes_tileset_two:
+    LDA tileset
+    CMP #$01
+    BNE tile_do_spikes_main
+    RTS
+
+tile_do_66:
+tile_do_F4:
+tile_do_spikes_main:
+tile_do_jelectro:
+tile_do_muncher:
+    LDA is_kuribo
+    BEQ +
+-
+    RTS
++
+    LDA hit_ceiling
+    BEQ -
+tile_do_hurt:
+    JMP Get_hurt
+
+
+tile_do_98:
+tile_do_C0:
+tile_piranha_alt_tiles:
+    LDY #$01
+    LDA PatTable_BankSel+1
+    CMP #$3e
+    BNE tile_prianha_return         ; if neither return
+    BEQ tile_prianha_tiles_main
+
+tile_do_9A:
+tile_do_C2:
+tile_piranha_tiles:
+    LDY #$00
+    LDA PatTable_BankSel+1
+    CMP #$60
+    BNE tile_prianha_return  ; If current pattern table is $60, jump to PRG008_BDC9
+
+tile_prianha_tiles_main:
+    LDA tileset
+    CMP #$05
+    BEQ +
+tile_prianha_return:
+    RTS
++
+    CPX #$03
+    BEQ tile_prianha_return     ; don't check the third x
+    LDA is_kuribo
+    BNE tile_prianha_return     ; don't get hurt if in kuribo
+
+; Get hurt
+    JMP Get_hurt   ; Get hurt!
 
 
 ; Quicksand and the icy tiles are used, so we check the head for quicksand and the rest for the tile
