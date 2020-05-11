@@ -1,5 +1,5 @@
     .db "NES", $1a ;identification of the iNES header
-    .db 16 ;number of 16KB PRG-ROM pages
+    .db 32 ;number of 16KB PRG-ROM pages
     .db 16 ;number of 8KB CHR-ROM pages
     .db $40|0 ;mapper 4 and mirroring
     .dsb 9, $00 ;clear the remaining bytes
@@ -4854,19 +4854,36 @@ TILE18_BOUNCEDBLOCK = $C2   ; Temporary tile for when block has been bounced
     .include "PRG/prg029.asm"
     .pad $E000, $FF
 
+    ; Our custom code
+    .base $A000
+    .include "PRG/prg030.asm"
+    .pad $C000, $FF
+
+    ; Our custom code for mario collision
+    .base $C000
+    .include "PRG/prg031.asm"
+    .pad $E000, $FF
+
+
+    ; Pad our way to the end of file
+    REPT 30
+    .base $C000
+    .pad $E000, $FF
+    ENDR
+
+
     ; This bank is ALWAYS active in ROM, sitting at 8000h-9FFFh
     ; Contains interrupt handling code and other constantly reused functionality
     ; bank 30
     .base $8000
-    .include "PRG/prg030.asm"
+    .include "PRG/prg062.asm"
     .pad $A000, $FF
 
     ; This bank is ALWAYS active in ROM, sitting at E000h-FFFFh
     ; Contains interrupt handling code and other constantly reused functionality
     ; bank 31
     .base $E000
-    .include "PRG/prg031.asm"
-
+    .include "PRG/prg063.asm"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; CHR ROM BEGINS

@@ -13,8 +13,8 @@
 ; updated by Joe Smo
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 tile_check_shortcut:
-	.byte %00000001, %00000010, %00000100, %00001000
-	.byte %00010000, %00100000, %01000000, %10000000
+	.byte %10000000, %01000000, %00100000, %00010000
+	.byte %00001000, %00000100, %00000010, %00000001
 
 tile_check_tileset_shortcut:
 	.byte 0, 1, 2, 3, 4, 5, 6, 7
@@ -40,63 +40,488 @@ tile_check_tileset:
 
 ; return a & b
 	AND Temp_Var1
+
+tile_do_00:
+tile_do_01:
+tile_do_02:
+tile_do_03:
+tile_do_04:
+tile_do_05:
+tile_do_06:
+tile_do_07:
+tile_do_08:
+tile_do_09:
+tile_do_0A:
+tile_do_0B:
+tile_do_0E:
+tile_do_0F:
+tile_do_10:
+tile_do_11:
+tile_do_12:
+tile_do_13:
+tile_do_14:
+tile_do_15:
+tile_do_16:
+tile_do_17:
+tile_do_18:
+tile_do_19:
+tile_do_1A:
+tile_do_1B:
+tile_do_1C:
+tile_do_1D:
+tile_do_1E:
+tile_do_1F:
+tile_do_20:
+tile_do_21:
+tile_do_28:
+tile_do_29:
+tile_do_2A:
+tile_do_2B:
+tile_do_2C:
+tile_do_2D:
+tile_do_2E:
+tile_do_2F:
+tile_do_30:
+tile_do_31:
+tile_do_32:
+tile_do_33:
+tile_do_3B:
+tile_do_3C:
+tile_do_3D:
+tile_do_3E:
+tile_do_3F:
+tile_do_40:
+tile_do_41:
+tile_do_42:
+tile_do_43:
+tile_do_44:
+tile_do_45:
+tile_do_46:
+tile_do_47:
+tile_do_48:
+tile_do_4D:
+tile_do_4E:
+tile_do_4F:
+tile_do_50:
+tile_do_51:
+tile_do_52:
+tile_do_53:
+tile_do_54:
+tile_do_57:
+tile_do_58:
+tile_do_59:
+tile_do_5A:
+tile_do_5B:
+tile_do_5C:
+tile_do_5D:
+tile_do_5E:
+tile_do_5F:
+tile_do_60:
+tile_do_61:
+tile_do_62:
+tile_do_63:
+tile_do_64:
+tile_do_65:
+tile_do_67:
+tile_do_68:
+tile_do_69:
+tile_do_6A:
+tile_do_6B:
+tile_do_6C:
+tile_do_6D:
+tile_do_6E:
+tile_do_6F:
+tile_do_70:
+tile_do_71:
+tile_do_72:
+tile_do_73:
+tile_do_74:
+tile_do_75:
+tile_do_76:
+tile_do_77:
+tile_do_78:
+tile_do_79:
+tile_do_7A:
+tile_do_7B:
+tile_do_7C:
+tile_do_7F:
+tile_do_80:
+tile_do_85:
+tile_do_86:
+tile_do_87:
+tile_do_88:
+tile_do_89:
+tile_do_8A:
+tile_do_8B:
+tile_do_8C:
+tile_do_8D:
+tile_do_8E:
+tile_do_8F:
+tile_do_90:
+
+tile_do_93:
+tile_do_94:
+tile_do_95:
+tile_do_96:
+tile_do_97:
+tile_do_99:
+tile_do_9B:
+tile_do_9C:
+tile_do_9D:
+
+tile_do_9F:
+tile_do_A0:
+tile_do_A1:
+tile_do_A2:
+tile_do_A3:
+tile_do_A4:
+tile_do_A5:
+tile_do_A6:
+tile_do_A7:
+tile_do_A8:
+tile_do_A9:
+tile_do_AA:
+tile_do_AB:
+tile_do_AC:
+
+
+tile_do_C1:
+tile_do_C3:
+tile_do_C4:
+tile_do_C5:
+tile_do_C6:
+tile_do_C7:
+tile_do_C8:
+tile_do_C9:
+tile_do_CA:
+tile_do_CB:
+tile_do_CC:
+tile_do_CD:
+tile_do_CE:
+tile_do_CF:
+tile_do_D0:
+tile_do_D1:
+tile_do_D2:
+tile_do_D3:
+tile_do_D4:
+tile_do_D5:
+tile_do_D6:
+tile_do_D7:
+tile_do_D8:
+tile_do_D9:
+tile_do_DA:
+tile_do_DB:
+tile_do_DC:
+tile_do_DD:
+tile_do_DE:
+tile_do_DF:
+tile_do_E0:
+tile_do_E1:
+tile_do_E4:
+tile_do_E5:
+tile_do_E6:
+tile_do_E7:
+tile_do_E8:
+tile_do_E9:
+tile_do_EA:
+tile_do_EB:
+tile_do_EC:
+tile_do_ED:
+tile_do_EE:
+tile_do_EF:
+tile_do_F0:
+tile_do_F1:
+tile_do_F2:
+tile_do_F3:
+tile_do_F5:
+tile_do_F6:
+tile_do_F7:
+tile_do_F8:
+tile_do_F9:
+tile_do_FA:
+tile_do_FB:
+tile_do_FC:
+tile_do_FD:
+tile_do_FE:
+tile_do_FF:
 tile_do_nothing:
-    LDA active_inputs
-    AND #PAD_DOWN
-    BNE +
-    LDA #$00
-    STA white_block_cnt             ; reset white block counter if not on a white block
-+
 	RTS
 
-spc_at_blocks:
-    .word tile_do_0C
-    .word tile_do_0D
 
-    .word tile_do_22
-    .word tile_do_23
-    .word tile_do_24
-    .word tile_do_25
-    .word tile_do_26
-    .word tile_do_27
-    
-    .word tile_do_34
-    .word tile_do_35
+player_x_offset_for_pipes:
+    .byte $08, $04, $04 ; Offset applied to Player_X when: in air or level is sloped, Player is NOT small, Player is small
 
-    .word tile_do_36
-    .word tile_do_37
-    .word tile_do_38
-    .word tile_do_39
-    .word tile_do_3A
+    ; This table enables certain pipe tiles by tileset
+    ; (since some have more pipe tile types than others)
+    ; bit 6 enables TILE8_PIPEH3_B (not enterable)
+    ; bit 7 enables TILE3_PIPETB5_L/R (takes Player to common exit area)
+PipeTile_EnableByTileset:
+    ; Indexed by tileset
+    .byte %00000000 ;  0 Plains style
+    .byte %00000000 ;  1 Mini Fortress style
+    .byte %10000000 ;  2 Hills style
+    .byte %00000000 ;  3 High-Up style
+    .byte %00000000 ;  4 pipe world plant infestation
+    .byte %00000000 ;  5 water world
+    .byte %00000000 ;  6 Toad House
+    .byte %11000000 ;  7 Vertical pipe maze
+    .byte %01000000 ;  8 desert levels
+    .byte %00000000 ;  9 Airship
+    .byte %11000000 ; 10 Giant World
+    .byte %00000000 ; 11 Ice level
+    .byte %11000000 ; 12 Sky level
+    .byte %10000000 ; 13 Underground
 
-	.word tile_do_49 				; 49
-	.word tile_do_4A
-    .word tile_do_4B
-    .word tile_do_4C
+Pipe_enter_inputs:
+    .byte PAD_RIGHT, PAD_LEFT   ; What to press to enter a horizontal pipe; pad right and left, respectively
+    .byte PAD_DOWN, PAD_UP      ; What to press to enter a vertical pipe; pad down and up, respectively
 
-    .word tile_do_55
-    .word tile_do_56
+tile_do_AD:
+tile_do_AE:
+tile_do_AF:
+tile_do_B0:
+tile_do_B1:
+tile_do_B2:
+tile_do_B3:
+tile_do_B4:
+tile_do_B5:
+tile_do_B6:
+tile_do_B7:
+tile_do_B8:
+tile_do_B9:
+tile_do_BA:
+tile_do_BB:
+tile_do_BC:
+tile_do_BD:
+tile_do_BE:
 
-    .word tile_do_66
+tile_do_9E:
+tile_do_BF:
 
-    .word tile_do_7D
-    .word tile_do_7E
+tile_do_91:
+tile_do_92:
 
-	.word do_tile_81 				; 81
-	.word do_tile_82 				; 82
-	.word do_tile_83 				; 83
-	.word do_tile_84 				; 84
+; A mega routine for all the pipes
+tile_do_pipes:
+    TXA     ; todo: make this routine dynamic
+    PHA
 
-    .word tile_do_9A
-    .word tile_do_9A
+    LDA is_statue
+    ORA tail_swipe_counter
+    ORA invis_summer_sault
+    BEQ +
 
-    .word tile_do_C0
-    .word tile_do_C2
+tile_do_no_pipes:
+    PLA
+    TAX
+    RTS
 
-    .word tile_do_E2
-    .word tile_do_E3
++
+    LDY tileset
+    LDA PipeTile_EnableByTileset, y     ; handles custom pipes
+    STA pipes_by_tileset
 
-    .word tile_do_F4
+    LDA in_air
+    BNE +++
+
+    LDA front_block                     ; Get tile near head...
+
+    LDY is_vertical
+    BEQ +                               ; If !vertical then jump
+; Is vertical
+    LDY #$02
+    CMP #TILE8_SCENPIPE_ENDH1B
+    BEQ ++  ; If tile near head is TILE8_SCENPIPE_ENDH1B, jump to PRG008_BC87
+    LDY #$00
+
++ ; BC79
+    CMP #TILE1_PIPEH1_B
+    BEQ ++      ; If tile near head is TILE1_PIPEH1_B, jump to PRG008_BC87
+
+    BIT pipes_by_tileset  ; PipeTile_EnableByTileset value
+    BVC +++     ; if TILE8_PIPEH3_B !enabled jump to PRG008_BCAA
+
+; Check TILE8_PIPEH3_B
+    LDY #$03
+    CMP #TILE8_PIPEH3_B
+    BNE +++     ; If tile near head is NOT TILE8_PIPEH3_B, jump to PRG008_BCAA
+
+++ ; BC89
+
+; May be entering a pipe
+    LDX #$00     ; X = 0
+
+    LDA player_x
+    AND #$0f                        ; lower it to the pixel on the block
+    CMP #$08
+    BLS +                           ; relative location < 8 aka if on the left jump
+    INX     ; x = 1 = right or x = 0 = left
++
+    LDA active_inputs
+    AND Pipe_enter_inputs, x    ; get if the player is holding left/right for the left/right pipe
+    BEQ +++                         ; jump if ~input_held
+
+; We are entering a pipe
+
+    TYA
+    BNE +                           ; if !0 then time to enter pipe
+
+    LDY #$01
+    LDA horz_scroll_lock
+    BEQ +   ; if ~horz_scroll_lock then enter a pipe (basically finds if we are already entering the pipe)
+    DEY
++
+    JSR PipeEntryPrepare            ; enter pipe time
+    PLA
+    TAX     ; get x back
+    RTS  ; Jump to PRG008_BD4B
+-
+    PLA
+    TAX
+    RTS
+
+
++++
+; Not entering a pipe yet...
+    LDX #$02
+    LDA left_block
+
+    LDY in_air
+    BEQ +                           ; if !in_air then jump
+
+; We are in the air
+    LDY hit_ceiling
+    BEQ -                           ; if !hit_ceiling then jump backwards
+
+    LDY is_ducking
+    BEQ ++                          ; if is_ducking then jump else jump backwards
+
+    JMP -  ; Otherwise, jump to PRG008_BD4B
+
+++ ;PRG008_BCC0:
+    INX      ; X = 3
+    LDA right_block
++
+    STA Temp_Var1                   ; right_block
+    STX Temp_Var3                   ; pipe mode
+
+    LDA #TILE1_PIPETB2_R            ; load right pipe tile
+    SEC
+    SBC Temp_Var1                   ; pipe tile - floor tile
+    CMP #$04                        ; if vertical pipe tiles then...
+
+    LDY horz_scroll_lock
+    BEQ +  ; If not in a Big Question Block area, jump to PRG008_BCD6
+
+    AND #$01     ; Not sure what they need this for?
+
++ ;PRG008_BCD6:
+    TAY                             ; result + the AND if horz_scroll_lock
+    BCC ++                          ; if was a pipe tile jump
+
+; Not a pipe 1 or 2 end tile...
+    LDY pipes_by_tileset
+    BPL +  ; if TILE3_PIPETB5_L/R disabled jump
+
+; Need to check TILE3_PIPETB5_L/R
+    LDA #TILE3_PIPETB5_R
+    SEC
+    SBC Temp_Var1                   ; if TILE3_PIPETB5_R - right tile then...
+    CMP #$02
+    LDY #$06
+    BCC ++                          ; if in range then jump
+
++ ;PRG008_BCE8:
+    LDA #TILE1_PIPETB4_R
+    LDY is_vertical
+    BEQ +                           ; if !vertical then jump
+
+    LDA #TILE8_SCENPIPE_ENDVR
+
++ ;PRG008_BCF1:
+    SEC
+    SBC Temp_Var1                   ; tile
+    CMP #$02
+    BCS -                 ; if not in range then we are not entering a pipe
+    LDY #$04
+
+++ ;PRG008_BCFA:
+    STY Temp_Var1                   ; Temp_Var1 = pipe_type
+
+    AND #$01                        ; if right then 1 else 0
+    ASL A
+    ASL A
+    ASL A
+    ASL A                           ; multiply by 16, a table would be better
+    STA Temp_Var2                   ; Temp_Var2 = result
+
+; Determine if we are holding the correct buttons to enter a pipe
+    LDA active_inputs
+    AND Pipe_enter_inputs, x        ; if holding the correct direction for the pipe...
+    BEQ -                 ; if ~holding then jump (not entering a pipe)
+
+; Time to enter a pipe
+    LDA pipe_movement
+    BNE -                 ; if in_pipe then don't enter another pipe
+
+    LDY #$00
+    LDA in_air
+    ORA is_sloped
+    BNE +                           ; if in_air or is_sloped then jump
+
+    INY
+    LDA Player_Suit
+    BNE +                           ; if !small then jump
+
+    INY                             ; player is small
+
++ ;PRG008_BD1F:
+; if y = 0 then in_air or is_sloped elif y = 1 then player is ~small else player is small
+    LDA player_x
+    AND #$0f
+    PHA                             ; save relative x for later
+
+    CLC
+    ADC player_x_offset_for_pipes, y; add offset
+    AND #$10    ; Check if on "odd" tile (only true on Player_X 16, 48, 80, etc.) AKA right tile
+    BNE +                           ; if odd then jump
+
+    PLA                             ; restore relative x
+    ORA #$F0                        ; make negativish
+    PHA                             ; save relative x for later
+
++ ;PRG008_BD30:
+    PLA                             ; restore relative x
+    CLC
+    ADC Temp_Var2                   ; 0 or 16, left or right tile respectively
+
+    SEC
+    SBC #3
+    CMP #10
+    BGE +     ; If Player_X >= 10 after subtracting 3 (??), jump to PRG008_BD4B (no pipe today)
+
+    LDA Temp_Var1                   ; get pipe_type
+    LSR A
+    TAY
+    JSR PipeEntryPrepare            ; prepare entry into pipe!
+    JSR PipeMove_SetPlayerFrame     ; update Player frame!
+    PLA
+    PLA
+    PLA
+    PLA
+    PLA
+    PLA     ; We do not want to change the bank back
+    JMP Player_Draw29               ; draw Player
+; Do not return to caller!! and do not restore x
+
++
+    PLA
+    TAX
+
+    PLA
+    PLA
+    RTS
+
 
 conveyor_tileset_enabled:
     .byte %01011000, 0, 0, 0, 0, 0, 0, 0
@@ -112,28 +537,31 @@ tile_do_right_conveyor:
 
 tile_do_conveyor:
     CPX #$00    ; only check the feet
-    BNE +
+    BEQ +
     CPX #$03
-    BNE +
+    BEQ +
 
     LDA in_air
     BNE +       ; if in air then jump (no conveyor)
     LDA pswitch_cnt
-    BNE +       ; if in air then jump (no conveyor)
+    BEQ ++       ; if in air then jump (no conveyor)
++
+    RTS
+++
 
 ; Check what tilesets use conveyors
-    LDA <conveyor_tileset_enabled
-    STA Temp_Var1
-    LDA >conveyor_tileset_enabled
-    STA Temp_Var1+1
-    JSR tile_check_tileset
+    LDA tileset
+    CMP #$01
+    BEQ +
+    CMP #$03
+    BEQ +
+    CMP #$04
     BEQ +
     RTS
 +
 
 ; Do conveyor action (we are on a conveyor)
-    TYA         ; get the conveyor slide
-    STA player_slide
+    STY player_slide
     RTS
 
 tile_do_7D:
@@ -141,21 +569,23 @@ tile_do_7E:
 tile_do_spikes_tileset_nine:
     LDA tileset
     CMP #$08
-    BNE tile_do_spikes_main
+    BEQ tile_do_spikes_main
+    RTS
 
 tile_do_0C:
 tile_do_0D:
 tile_do_spikes_tileset_eight:
     LDA tileset
     CMP #$07
-    BNE tile_do_spikes_main
+    BEQ tile_do_spikes_main
+    RTS
 
 tile_do_E2:
 tile_do_E3:
 tile_do_spikes_tileset_two:
     LDA tileset
     CMP #$01
-    BNE tile_do_spikes_main
+    BEQ tile_do_spikes_main
     RTS
 
 tile_do_66:
@@ -169,9 +599,9 @@ tile_do_muncher:
     RTS
 +
     LDA hit_ceiling
-    BEQ -
+    BNE -
 tile_do_hurt:
-    JMP Get_hurt
+    JMP player_get_hurt_alt
 
 
 tile_do_98:
@@ -193,19 +623,16 @@ tile_piranha_tiles:
 
 tile_prianha_tiles_main:
     LDA tileset
-    CMP #$05
+    CMP #$04
     BEQ +
 tile_prianha_return:
     RTS
 +
     CPX #$03
     BEQ tile_prianha_return     ; don't check the third x
-    LDA is_kuribo
-    BNE tile_prianha_return     ; don't get hurt if in kuribo
 
 ; Get hurt
-    JMP Get_hurt   ; Get hurt!
-
+    JMP player_get_hurt_alt   ; Get hurt!
 
 ; Quicksand and the icy tiles are used, so we check the head for quicksand and the rest for the tile
 tile_do_4A:
@@ -216,9 +643,6 @@ tile_do_4A:
     JMP tile_icy
 
 not_slippery:
-    LDA #$00
-    STA slippery_type  ; slippery_type = 0 (not slippery)
-+
     RTS
 
 tile_do_36:
@@ -241,61 +665,13 @@ tile_icy:
     LDY #$01
 +
     LDA tileset
-    CMP #11
+    CMP #$0B
     BNE not_slippery
-    RTS
 
     LDA in_air
     BNE not_slippery
+    STY slippery_type  ; we are on a slippery tile
     RTS
-
-    CPX #$01    ; only check for the tiles the player is above
-    BEQ +
-    CPX #$02
-    BEQ +
-    RTS
-+
-
-    SEC
-    SBC #TILE12_SNOWBLOCK_UL
-    CMP #$03
-    BLT ++  ; If Player is on top of snow block, jump to ++
-
-    TYA      ; Restore tile -> 'A'
-    SEC
-    SBC #TILE12_GROUND_L
-    CMP #$03
-    BGE +++  ; If Player is not on bottom ground, jump to +++
-
-++
-    INC slippery_type  ; slippery_type = 1 (bottom ground is a little slippery!)
-    JMP +     ; Jump to +
-
-+++:
-    TYA      ; Restore tile -> 'A'
-    SEC
-    SBC #TILE12_LARGEICEBLOCK_UL
-    CMP #$05
-    BLT PRG008_BE26  ; If Player is touching any of the small or large ice blocks, jump to PRG008_BE26
-
-    CPY #TILE12_FROZENCOIN
-    BEQ PRG008_BE26  ; If Player is touching frozen coin blocks, jump to PRG008_BE26
-
-    CPY #TILE12_FROZENMUNCHER
-    BNE PRG008_BE2E  ; If Player is NOT touching frozen muncher blocks, jump to PRG008_BE2E
-
-PRG008_BE26:
-    LDA #$02
-    STA slippery_type  ; slippery_type = 2 (ground is REALLY slippery!)
-
-    JMP +  ; Jump to +
-
-PRG008_BE2E:
-    DEX      ; X--
-    BPL -  ; While X >= 0, loop!
-
-
-
 
 
 tile_do_25:
@@ -356,9 +732,9 @@ tile_do_quick_sand:
 	BEQ ++ 							; we don't check if the player's head is in the quicksand
 
 ; Check what tilesets use quicksand
-	LDA <quicksand_tileset_enabled
+	LDA #<quicksand_tileset_enabled
 	STA Temp_Var1
-	LDA >quicksand_tileset_enabled
+	LDA #>quicksand_tileset_enabled
 	STA Temp_Var1+1
 	JSR tile_check_tileset
 	BNE +
@@ -370,7 +746,6 @@ tile_do_quick_sand:
     BMI -							; if moving upward do nothing
 
 ; Do quick sand logic
-	TXA
     LDA #$00						; disable ducking and sliding
     STA is_ducking
     STA is_sliding
@@ -389,11 +764,11 @@ tile_do_quick_sand:
     SBC is_sinking
 
     LDY #-$20    					; y = -$20 (escape jump vel)
-    TAX      						; difference -> x
+    PHA      						; difference -> x
     AND #%11110000  				; Keep only upper 4 bits
     BNE +  							; if not on top of sand jump
 
-    TXA      						; restore difference
+    PLA      						; restore difference
     AND #%00001111
     CMP #$03
     BGE +  							; not close enough so jump
@@ -424,16 +799,14 @@ tile_do_quick_sand:
     ROR player_x_vel
     BPL +
     INC player_x_vel
-
 +
-    PLA
-    TAX
     RTS
 
 do_tile_81:
 do_tile_82:
 do_tile_83:
 do_tile_84:
+    CPX #$00
 	BNE do_tile_84_nothing ; if !head_block do nothing
 	LDA tileset
 	CMP #ts_toad_house
@@ -453,13 +826,13 @@ toad_house_x_locations:
 toad_house_items:
     .byte $00, $01, $02, $00, $01, $02, $00, $01, $02, $00, $01, $02, $00, $01, $02, $00
 
-toad_house_item_offset:
-    .byte $02, $03, $0A, $0A, $0A, $05, $08, $0B, $0E, $11
-
 ; Toad House items: 0 Warp Whistle,1 P-Wing,2 Frog Suit,3 Tanooki,4 Hammer,5 Frog,6 Tanooki
 ; 7 Hammer,8 Mushroom,9 Fire Flower,10 Leaf
 toad_house_item_received:
     .byte $0C, $08, $04, $05, $06, $04, $05, $06, $01, $02, $03, $04, $02, $03, $05
+
+toad_house_item_offset:
+    .byte $02, $03, $0A, $0A, $0A, $05, $08, $0B, $0E, $11
 
 inventory_row_offsets:
     .byte $15, $0E, $07, $00
@@ -506,19 +879,23 @@ tile_do_toad_house_chest:
     DEY
     CPY #$05
     BLS +  ; If (toad_house_type - 1) < 5, jump to +
-; X = 5 if random super suit (frog, tanooki, hammer)
-; X = 6 if standard random basic item
+
+
     LDA cur_random
     AND #$0f
     TAY
     LDA toad_house_items, y 		; get a random item
 
     LDY toad_house_type
+    DEY
     CLC
     ADC toad_house_item_offset, y  	; add the correct offset
-    STA Objects_Frame 				; store item you are getting
+    TAY
 
 +
+    LDA toad_house_item_received, y
+    STA Objects_Frame 				; store item you are getting
+
     LDA block_event_lo_x
     LSR A
     LSR A
