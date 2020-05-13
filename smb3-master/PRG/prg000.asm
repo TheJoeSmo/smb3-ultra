@@ -59,6 +59,18 @@ Level_SlopeQuadC0:
     .byte $01, $07, $02, $0C, $0D, $0E, $0F, $05, $06, $11, $12, $13, $14, $07, $03, $03
     .byte $03, $03, $08, $07, $04, $07, $04, $04, $08, $08, $04
 
+;Slope_IsNotFloorShape:
+;    .byte $01, $00, $00, $00, $00, $01, $01, $00    ; $00-$07
+;    .byte $01, $01, $00, $01, $00, $00, $00, $00    ; $08-$0F
+;    .byte $01, $01, $01, $01, $01           ; $10-$14
+
+; air, 45 / , 45 \, solid tile
+; wall, -45 \, -45 /, ground
+; ceiling, unused, unused (bumpy), unused
+; top 22.5  \, bottom 22.5 \ bottom 22.5 /, top 22.5 /
+; unused, top -22.5  /, bottom -22.5 / bottom -22.5 \
+; top -22.5 \
+
 Slope_LUT:
     ; Lower 4 bits are the ground slope height
     ; Upper 4 bits are the ceiling slope height

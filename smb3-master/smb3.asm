@@ -19,6 +19,7 @@
 
 
 ; Handy pseudo instructions... only make sense in the context of CMPing a number...
+    .include Custom/custom_macros.asm
     macro BLT _1
     BCC _1  ; A < CMP (unsigned)
     .endm
@@ -883,19 +884,14 @@ CineKing_DialogState:   ; Toad & King Cinematic: When 1, we're doing the text ve
     Player_SprWorkL:    .dsb 1   ; Sprite work address low
     Player_SprWorkH:    .dsb 1   ; Sprite work address high
 
-                .dsb 1   ; $E3 unused
 
     Level_TileOff:      .dsb 1   ; Tile mem offset
-    Level_Tile:     .dsb 1   ; Temporary holding point for a detected tile index
-    Player_Slopes:      .dsb 3   ; for sloped levels only (3 bytes allocated, but only one actually used)
-                ; *NOTE: Code at PRG030_9EDB clears Player_Slopes+1 and Player_Slopes+2, but these are never used!
+    Level_Tile:         .dsb 1   ; Temporary holding point for a detected tile index
+    Player_Slopes:      .dsb 1   ; for sloped levels only (3 bytes allocated, but only one actually used)
 
-                .dsb 1   ; $E9 unused
-                .dsb 1   ; $EA unused
 
     Player_XStart:      .dsb 1   ; Set to Player's original starting X position (also used to check if level has initialized)
 
-                .dsb 1   ; $EC unused
 
 ; Player_Suit -- Player's active powerup (see also: Player_QueueSuit)
 PLAYERSUIT_SMALL    = 0

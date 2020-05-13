@@ -5897,11 +5897,6 @@ PRG030_9F0D:
     LDA Level_Tile ; A = Level_Tile (the tile retrieved)
     RTS      ; Return
 
-    ; Probably unused space
-    .byte $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
-    .byte $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
-    .byte $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
-
 
 PRG030_SUB_9F40:
     LDA #$00
