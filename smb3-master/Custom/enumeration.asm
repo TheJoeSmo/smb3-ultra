@@ -39,6 +39,7 @@ right_block = Level_Tile_GndR
 front_block = Level_Tile_InFL ; front block at feet level
 
 cur_player = Player_Current
+player_movement_direction = Player_MoveLR
 player_x = Player_X
 player_x_hi = Player_XHi
 player_y = Player_Y
@@ -47,6 +48,8 @@ player_x_vel = Player_XVel
 player_y_vel = Player_YVel
 player_slide = Player_SlideRate ; the amount added for 'sliding' (does not persist)
 player_slope = Player_Slopes
+is_going_uphill = Player_UphillFlag
+is_going_uphill_speed = Player_UphillSpeedIdx
 player_sprite_y = Player_SpriteY
 player_splash_disable = Splash_DisTimer
 splash_counter = Splash_Counter
@@ -58,13 +61,29 @@ bubble_y = Bubble_Y
 bubble_y_hi = Bubble_YHi
 bubble_x = Bubble_X
 bubble_x_hi = Bubble_XHi
+running_max_speed = Player_RunFlag
+p_speed_charge = Player_Power
+can_jump_in_air = Player_AllowAirJump 	; allows jumping off enemies and whatnot
+can_fly_counter = Player_FlyTime
+
+has_micro_goombas = Player_mGoomba
+player_walking_frames = Player_WalkAnimTicks
+
+invinsability_counter = Player_StarInv
+
+is_wagging_tail = Player_WagCount
 
 active_inputs = Pad_Holding
 new_inputs = Pad_Input
 
 is_holding = Player_IsHolding
+is_climbing = Player_IsClimbing
 
 active_powerup = Player_Suit
+
+no_exit_to_map = Level_PipeNotExit
+level_junction_type = Level_JctCtl
+return_status_from_level = Map_ReturnStatus
 
 player_partition_detection = Player_PartDetEn
 is_above_level = Player_AboveTop
@@ -72,7 +91,7 @@ temp_17 = Temp_VarNP0
 
 tile_memory_offset = Level_TileOff
 
-tile_address = Map_Tile_AddrL
+
 temp_tile = Level_Tile
 
 horz_scroll_lock = LevelJctBQ_Flag
@@ -129,3 +148,10 @@ Get_hurt = Player_GetHurt
 ts_toad_house = #$06
 
 tick_counter = Counter_1
+
+; tile addressing
+
+tile_address_offset = TileAddr_Off
+block_size = LL_ShapeDef
+tile_address = Map_Tile_AddrL
+tile_layout_address = Level_LayPtr_AddrL

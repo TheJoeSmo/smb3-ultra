@@ -205,13 +205,13 @@ _temp_x_with_hi_offset = Temp_Var15
 
 +
 
-    ; So in total we've calculated:
-    ; _temp_y_hi_w_offset and _temp_y_w_offset -- Y Hi and Lo
-    ; _temp_x_with_hi_offset and _temp_x_with_offset -- X Hi and Lo
+; So in total we've calculated:
+; _temp_y_hi_w_offset and _temp_y_w_offset -- Y Hi and Lo
+; _temp_x_with_hi_offset and _temp_x_with_offset -- X Hi and Lo
 
-    ; X/Y were not modified, so as inputs:
-    ; X = 0 (going down) or 1 (going up)
-    ; Y = player_y_vel
+; X/Y were not modified, so as inputs:
+; X = 0 (going down) or 1 (going up)
+; Y = player_y_vel
 
     STY _y_offset  ; _y_offset = player_y_vel
     STX _x_offset  ; _x_offset = 0 or 1
@@ -225,6 +225,7 @@ _temp_x_with_hi_offset = Temp_Var15
 +
     LDY _y_offset
     RTS
+
 
 +is_vertical
     LDA player_y_hi

@@ -1062,35 +1062,3 @@ Map_LevelLayouts:
     .include "PRG/maps/World7S.asm"
     .include "PRG/maps/World8S.asm"
     .include "PRG/maps/World9S.asm"
-
-
-; FIXME: Anybody want to claim this??
-; $BC54
-    .byte $55, $15, $F5, $56, $25, $D4 ; $BC4A - $BC59
-    .byte $F2, $07, $86, $E3, $2B, $F0, $FF, $3F, $00, $80, $FF, $7F, $00, $C0, $FF, $03 ; $BC5A - $BC69
-    .byte $00, $F0, $FF, $03, $80, $FF, $62, $81, $FF, $22, $78, $BD, $24, $09, $BD, $DD ; $BC6A - $BC79
-    .byte $4A, $08, $FA, $3F, $80, $D5, $4B, $B6, $2A, $2B, $4D, $24, $3F, $E8, $EF, $00 ; $BC7A - $BC89
-    .byte $7C, $FF, $05, $00, $FF, $0F, $00, $C0, $FF, $1F, $00, $F0, $FF, $07, $F0, $1F ; $BC8A - $BC99
-    .byte $28, $7E, $FE, $07, $00, $E0, $3F, $7E, $E0, $00, $8E, $FF, $00, $FE, $1F, $80 ; $BC9A - $BCA9
-    .byte $2E, $FE, $E7, $07, $00, $FF, $8F, $1E, $00, $7E, $A0, $F8, $FF, $03, $00, $FE ; $BCAA - $BCB9
-    .byte $A3, $00, $FF, $02, $EF, $7F, $01, $00, $F0, $FF, $07, $80, $FF, $27, $80, $EB ; $BCBA - $BCC9
-    .byte $FF, $01, $00, $FD, $7F, $00, $F8, $7F, $02, $2C, $CE, $1F, $04, $46, $FE, $3F ; $BCCA - $BCD9
-    .byte $00, $F0, $3F, $70, $BE, $07, $F8, $0B, $44, $8F, $FF, $C0, $7A, $00, $07, $FA ; $BCDA - $BCE9
-    .byte $FF, $07, $00, $FC, $3F, $40, $FE, $40, $FF, $1F, $00, $80, $FF, $27, $00, $EC ; $BCEA - $BCF9
-    .byte $BF, $7A, $80, $FF, $0B, $00, $FF, $81, $BF, $00, $A7, $42, $FF, $0B, $A0, $EA ; $BCFA - $BD09
-    .byte $3F, $E0, $C4, $D1, $ED, $20, $F4, $9F, $00, $F7, $03, $FB, $0B, $E0, $D3, $07 ; $BD0A - $BD19
-    .byte $E8, $EA, $57, $00, $7F, $C1, $AF, $78, $01, $A0, $FF, $2F, $E8, $00, $FE, $42 ; $BD1A - $BD29
-    .byte $57, $B7, $49, $44, $55, $6D, $AF, $58, $01, $DA, $FF, $15, $80, $AA, $FD, $07 ; $BD2A - $BD39
-    .byte $40, $FE, $52, $4B, $75, $2A, $B4, $55, $AB, $26, $A9, $BA, $58, $4A, $DB, $56 ; $BD3A - $BD49
-    .byte $95, $D0, $A6, $17, $2B, $D9, $B2, $52, $D5, $92, $DA, $D1, $96, $98, $B4, $4A ; $BD4A - $BD59
-    .byte $7B, $27, $89, $6C, $29, $EA, $FD, $0A, $01, $DA, $FE, $17, $00, $F5, $BD, $44 ; $BD5A - $BD69
-    .byte $49, $ED, $AD, $04, $69, $FB, $04, $EA, $BD, $54, $92, $D0, $BE, $4B, $92, $DA ; $BD6A - $BD79
-    .byte $92, $DA, $A4, $B6, $95, $A4, $AA, $DA, $5A, $12, $D5, $AA, $B7, $24, $29, $B5 ; $BD7A - $BD89
-    .byte $AD, $26, $B1, $2D, $A5, $55, $2B, $25, $B5, $DD, $44, $AA, $6A, $2B, $69, $A5 ; $BD8A - $BD99
-    .byte $DA, $B6, $24, $A8, $BD, $25, $A9, $B2, $DD, $48, $52, $6D, $AB, $52, $55, $25 ; $BD9A - $BDA9
-    .byte $6D, $5B, $49, $AA, $AD, $2A, $49, $6D, $AB, $52, $53, $A5, $B2, $AD, $2A, $55 ; $BDAA - $BDB9
-    .byte $55, $49, $6D, $57, $21, $B6  ; $BDBA - $BDBF
-
-
-
-; Rest of ROM bank was empty

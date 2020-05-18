@@ -48,3 +48,13 @@
     INC hi
 +++++
     endm
+
+    macro ADD_WORD_BIG lo, hi, value
+    LDA lo
+    CLC
+    ADC #(value & $00FF)
+    STA lo
+    LDA hi
+    ADC #((value & $FF00) >> 8)
+    STA hi
+    endm
