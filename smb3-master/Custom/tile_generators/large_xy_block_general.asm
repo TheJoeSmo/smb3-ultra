@@ -1,6 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Could put into a macro .macro _tile and put .endm at the end
-; then every instance of a horizontal run, you can simply insert the same code
+; Byte 3 determines y size
+; Byte 4 determines x size
+; Byte 5 determines tile
 ;
 ; Block can go go from 1x1 to 256x256
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
