@@ -11,7 +11,7 @@ _tile_address = Temp_Var1
 _width = Temp_Var3
 _height = Temp_Var4
 __width = Temp_Var5
-_tile - Temp_Var6
+_tile = Temp_Var6
 
     LDY #$00
     LDA (tile_layout_address), y                            ; get next byte
