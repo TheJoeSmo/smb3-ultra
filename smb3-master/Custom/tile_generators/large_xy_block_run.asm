@@ -2,7 +2,7 @@
 ; Could put into a macro .macro _tile and put .endm at the end
 ; then every instance of a horizontal run, you can simply insert the same code
 ;
-; Block can go go from 1x1 to 256x256
+; Block can go go from 1x1 to 256x16
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 _tile = $00
@@ -27,6 +27,7 @@ __width = Temp_Var5
     STA _tile_address+1
 
     LDA block_size
+    AND #$0F
     STA _height
 
     LDA _width

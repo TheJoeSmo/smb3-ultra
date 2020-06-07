@@ -2,7 +2,7 @@
 ; Could put into a macro .macro _tile and put .endm at the end
 ; then every instance of a horizontal run, you can simply insert the same code
 ;
-; Block can go go from 1x1 to 256x256
+; Block can go go from 1x1 to 256x16
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 large_xy_block_run_general:
@@ -10,7 +10,7 @@ _tile_address = Temp_Var1
 _width = Temp_Var3
 _height = Temp_Var4
 __width = Temp_Var5
-_tile - Temp_Var6
+_tile = Temp_Var6
 
     LDY #$00
     LDA (tile_layout_address), y                            ; get next byte
@@ -30,6 +30,7 @@ _tile - Temp_Var6
     STA _tile_address+1
 
     LDA block_size
+    AND #$0F
     STA _height
 
     LDA _width
