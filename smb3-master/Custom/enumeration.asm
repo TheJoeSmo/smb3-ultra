@@ -155,3 +155,27 @@ tile_address_offset = TileAddr_Off
 block_size = LL_ShapeDef
 tile_address = Map_Tile_AddrL
 tile_layout_address = Level_LayPtr_AddrL
+level_generator_address = Level_LayPtrOrig_AddrL
+
+; world
+
+world_idx = World_Num
+world_stored = Map_Completions
+world_mario_block = World_Map_Tile
+falling_to_king_flag = Player_FallToKing
+
+world_x_hi = World_Map_XHi
+world_x_lo = World_Map_X
+world_y_lo = World_Map_Y
+world_to_warp = Map_Warp_PrevWorld
+world_last_y = Map_Entered_Y
+world_last_x_hi = Map_Entered_XHi
+world_last_x_lo = Map_Entered_X
+
+alt_level_object_pointer = Level_ObjPtr_AddrL
+level_object_pointer = Level_ObjPtrOrig_AddrL
+
+world_custom_enter = Map_EnterViaID
+
+bonus_game_to_play = Bonus_GameType
+bonus_game_host = Bonus_GameHost

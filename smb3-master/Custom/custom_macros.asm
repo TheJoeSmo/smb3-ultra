@@ -58,3 +58,13 @@
     ADC #((value & $FF00) >> 8)
     STA hi
     endm
+
+    macro ADD_WORD_BIG_TO_VAR in_lo, in_hi, out_lo, out_hi, value
+    LDA lo
+    CLC
+    ADC #(value & $00FF)
+    STA out_lo
+    LDA hi
+    ADC #((value & $FF00) >> 8)
+    STA out_hi
+    endm
